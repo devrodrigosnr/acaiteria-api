@@ -1,6 +1,6 @@
 package com.devrodrigosnr.acaiteria.model;
 
-import com.devrodrigosnr.acaiteria.PerfilEnum;
+import com.devrodrigosnr.acaiteria.enums.PerfilEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

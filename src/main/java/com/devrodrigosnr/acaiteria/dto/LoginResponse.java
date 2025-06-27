@@ -1,6 +1,6 @@
 package com.devrodrigosnr.acaiteria.dto;
 
-import com.devrodrigosnr.acaiteria.PerfilEnum;
+import com.devrodrigosnr.acaiteria.enums.PerfilEnum;
 
 public record LoginResponse(String token, String nome, PerfilEnum perfil) {
 
