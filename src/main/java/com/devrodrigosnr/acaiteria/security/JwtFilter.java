@@ -32,6 +32,17 @@ public class JwtFilter extends OncePerRequestFilter{
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) 
             throws ServletException, IOException {
 
+
+            String path = request.getRequestURI();
+            // Adicione todos os endpoints públicos aqui
+            if (
+                path.startsWith("/api/complementos") ||
+                path.startsWith("/api/pedidos") ||
+                path.startsWith("/api/auth")
+            ) {
+                filterChain.doFilter(request, response);
+                return;
+            }
             final String authHeader = request.getHeader("Authorization");
 
             if(authHeader == null || !authHeader.startsWith("Bearer ")) {
