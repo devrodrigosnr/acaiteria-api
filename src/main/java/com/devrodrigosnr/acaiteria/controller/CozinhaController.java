@@ -16,7 +16,7 @@ import com.devrodrigosnr.acaiteria.model.Pedido;
 import com.devrodrigosnr.acaiteria.service.PedidoService;
 
 @RestController
-@RequestMapping("/cozinha/pedidos")
+@RequestMapping("/api/cozinha/pedidos")
 @PreAuthorize("hasRole('COZINHA')")
 public class CozinhaController {
 

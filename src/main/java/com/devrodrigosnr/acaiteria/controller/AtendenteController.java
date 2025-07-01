@@ -16,7 +16,7 @@ import com.devrodrigosnr.acaiteria.model.Pedido;
 import com.devrodrigosnr.acaiteria.service.PedidoService;
 
 @RestController
-@RequestMapping("/atendente/pedidos")
+@RequestMapping("/api/atendente/pedidos")
 @PreAuthorize("hasRole('ROLE_ATENDENTE')")
 public class AtendenteController {
 

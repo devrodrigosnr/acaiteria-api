@@ -11,7 +11,7 @@ import com.devrodrigosnr.acaiteria.dto.LoginResponse;
 import com.devrodrigosnr.acaiteria.service.AuthService;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     private final AuthService service;
