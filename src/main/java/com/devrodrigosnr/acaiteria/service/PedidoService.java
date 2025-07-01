@@ -1,22 +1,29 @@
 package com.devrodrigosnr.acaiteria.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.devrodrigosnr.acaiteria.dto.ClienteDTO;
+import com.devrodrigosnr.acaiteria.enums.StatusPedido;
 import com.devrodrigosnr.acaiteria.mappers.ClienteMapper;
 import com.devrodrigosnr.acaiteria.model.Cliente;
+import com.devrodrigosnr.acaiteria.model.Pedido;
 import com.devrodrigosnr.acaiteria.repository.ClienteRepository;
 import com.devrodrigosnr.acaiteria.repository.ComplementoRepository;
+import com.devrodrigosnr.acaiteria.repository.PedidoRepository;
 
 @Service
 public class PedidoService {
 
     private final ClienteRepository clienteRepository;
     private final ComplementoRepository complementoRepository;
+    private final PedidoRepository pedidoRepository;
 
-    public PedidoService(ClienteRepository clienteRepository, ComplementoRepository complementoRepository) {
+    public PedidoService(ClienteRepository clienteRepository, ComplementoRepository complementoRepository, PedidoRepository pedidoRepository) {
         this.clienteRepository = clienteRepository;
         this.complementoRepository = complementoRepository;
+        this.pedidoRepository = pedidoRepository;
     }
 
     public void salvarPedido(ClienteDTO clienteDTO) {
@@ -24,4 +31,15 @@ public class PedidoService {
         clienteRepository.save(cliente);
     }
 
+    public List<Pedido> listarPedidosPorStatus(StatusPedido statusPedido) {
+        return pedidoRepository.findDistinctByStatusOrderByIdAsc(statusPedido);
+    }
+
+    public void alterarStatusPedido(Long pedidoId, StatusPedido novoStatus) {
+        Pedido pedido = pedidoRepository.findById(pedidoId)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+
+        pedido.setStatus(novoStatus);
+        pedidoRepository.save(pedido);
+    }
 }

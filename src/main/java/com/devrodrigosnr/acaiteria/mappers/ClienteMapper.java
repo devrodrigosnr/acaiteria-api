@@ -1,10 +1,10 @@
 package com.devrodrigosnr.acaiteria.mappers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.devrodrigosnr.acaiteria.dto.ClienteDTO;
 import com.devrodrigosnr.acaiteria.dto.PedidoDTO;
+import com.devrodrigosnr.acaiteria.enums.StatusPedido;
 import com.devrodrigosnr.acaiteria.model.Cliente;
 import com.devrodrigosnr.acaiteria.model.Pedido;
 import com.devrodrigosnr.acaiteria.repository.ComplementoRepository;
@@ -22,6 +22,7 @@ public class ClienteMapper {
                 .map(p -> {
                     Pedido pedido = PedidoMapper.toEntity(p, complementoRepository);
                     pedido.setCliente(cliente);
+                    pedido.setStatus(StatusPedido.PENDENTE_PAGAMENTO);
                     return pedido;
                 }).toList();
 

@@ -28,13 +28,7 @@ public class AuthService {
         );
 
         User user = userRepository.findByEmail(request.email()).orElseThrow();
-        String token = jwtService.gerarToken(
-            org.springframework.security.core.userdetails.User.builder()
-                .username(user.getEmail())
-                .password(user.getSenha())
-                .roles(user.getPerfil().name())
-                .build()
-        );
+        String token = jwtService.gerarToken(user);
 
         return new LoginResponse(token, user.getNome(), user.getPerfil());
     }

@@ -3,6 +3,7 @@ package com.devrodrigosnr.acaiteria.mappers;
 import java.util.List;
 
 import com.devrodrigosnr.acaiteria.dto.PedidoDTO;
+import com.devrodrigosnr.acaiteria.dto.PedidoDetalheResponse;
 import com.devrodrigosnr.acaiteria.model.Complemento;
 import com.devrodrigosnr.acaiteria.model.Pedido;
 import com.devrodrigosnr.acaiteria.repository.ComplementoRepository;
@@ -28,6 +29,26 @@ public class PedidoMapper {
                 complementoIds,
                 pedido.getCobertura()
         );
+    }
+
+    public static PedidoDetalheResponse toDetalheResponse(Pedido pedido) {
+        List<String> nomesComplementos = pedido.getComplementos().stream()
+                .map(Complemento::getNome)
+                .toList();
+
+        return new PedidoDetalheResponse(
+                pedido.getId(),
+                pedido.getTamanho(),
+                pedido.getCobertura(),
+                nomesComplementos,
+                pedido.getStatus()
+        );
+    }
+
+    public static List<PedidoDetalheResponse> toDetalheResponseList(List<Pedido> pedidos) {
+        return pedidos.stream()
+                .map(PedidoMapper::toDetalheResponse)
+                .toList();
     }
 
 }
