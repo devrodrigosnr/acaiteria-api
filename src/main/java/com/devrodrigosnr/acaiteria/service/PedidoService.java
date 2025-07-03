@@ -42,4 +42,8 @@ public class PedidoService {
         pedido.setStatus(novoStatus);
         pedidoRepository.save(pedido);
     }
+
+    public void excluirPedido(Long id) {
+        pedidoRepository.deleteById(id);
+    }
 }

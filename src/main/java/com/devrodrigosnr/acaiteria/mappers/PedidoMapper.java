@@ -37,6 +37,8 @@ public class PedidoMapper {
                 .toList();
 
         return new PedidoDetalheResponse(
+                pedido.getCliente().getNome(),
+                pedido.getCliente().getTelefone(),
                 pedido.getId(),
                 pedido.getTamanho(),
                 pedido.getCobertura(),
