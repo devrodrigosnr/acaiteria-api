@@ -34,7 +34,7 @@ public class JwtFilter extends OncePerRequestFilter{
 
 
             String path = request.getRequestURI();
-            // Adicione todos os endpoints públicos aqui
+            
             if (
                 path.startsWith("/api/complementos") ||
                 path.startsWith("/api/pedidos") ||
